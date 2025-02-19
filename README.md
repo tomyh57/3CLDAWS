@@ -21,22 +21,35 @@ Un sous-réseau (subnet) est une subdivision d’un VPC sur AWS, permettant d’
 
 ![image](https://github.com/user-attachments/assets/4a433005-3fed-420f-ad9e-54a597e1e185)
 
-### Table de routage publique :
+## Table de routage publique :
 ### Qu'est ce qu'une table de routage
 Une table de routage sur AWS est un ensemble de règles qui déterminent comment le trafic réseau est dirigé à l'intérieur d'un VPC. Elle associe des sous-réseaux à des destinations (Internet, autres sous-réseaux, VPN, etc.) via des routes définissant le chemin du trafic.
 
+Nous avons créé des routes afin de diriger le trafic vers notre base de données ainsi qu'à notre instance de test.
+
 ![image](https://github.com/user-attachments/assets/72edd5d7-f748-4558-b965-fa61f0009e37)
 
-### Table de routage private 1 :
+## Table de routage private 1 :
+Nous avons créé des routes afin de diriger le trafic vers notre instance public et vers la nat gateway.
+
 ![image](https://github.com/user-attachments/assets/ac9ebd96-60c1-4a54-9738-2e2c0cce8b40)
 
-### NAT : 
+## NAT : 
+### Qu'est ce qu'une NAT
+Une NAT (Network Address Translation) sur AWS permet aux instances situées dans un sous-réseau privé d’accéder à Internet (pour télécharger des mises à jour, API, etc.) sans être directement exposées. Elle peut être déployée via une NAT Gateway (gérée par AWS) ou une NAT Instance (serveur EC2 configuré pour la translation d’adresses réseau).
+
 ![image](https://github.com/user-attachments/assets/a9f2d50d-480c-4004-b970-214b0d73409f)
 
-### Passerelle internet : 
+## Passerelle internet : 
+### Qu'est ce qu'une passerelle internet
+Une passerelle Internet (Internet Gateway - IGW) sur AWS est un composant réseau qui permet aux instances d’un sous-réseau public de communiquer avec Internet. Elle assure la translation d’adresses IP (NAT) pour les instances disposant d’une IP publique ou Elastic IP.
+
 ![image](https://github.com/user-attachments/assets/f861904f-3ac8-46ea-a26f-8c7c74c0756f)
 
-### Groupe de sécurité privé : 
+## Groupe de sécurité privé : 
+### Qu'est ce qu'un groupe de sécurité privé
+Un groupe de sécurité (Security Group) sur AWS est un pare-feu virtuel qui contrôle le trafic entrant et sortant des ressources (comme les instances EC2). Il fonctionne avec des règles autorisant ou bloquant le trafic basé sur les ports, protocoles et adresses IP.
+
 ![image](https://github.com/user-attachments/assets/18cc92cc-b345-4331-b435-16677b12fc91)
 
 ### Groupe de sécurité public : 
