@@ -16,9 +16,15 @@ Il nous a servis à créer notre réseau pour notre projet avec les tables de ro
 ![image](https://github.com/user-attachments/assets/bb9d68e6-f875-49fe-99aa-d2fe516e7272)
 
 ## Sous-réseaux : 
+### Qu'est ce qu'un sous-réseau
+Un sous-réseau (subnet) est une subdivision d’un VPC sur AWS, permettant d’organiser et d’isoler les ressources. Chaque sous-réseau appartient à une zone de disponibilité (AZ) et peut être public (accessible depuis Internet) ou privé (isolé d’Internet).
+
 ![image](https://github.com/user-attachments/assets/4a433005-3fed-420f-ad9e-54a597e1e185)
 
 ### Table de routage publique :
+### Qu'est ce qu'une table de routage
+Une table de routage sur AWS est un ensemble de règles qui déterminent comment le trafic réseau est dirigé à l'intérieur d'un VPC. Elle associe des sous-réseaux à des destinations (Internet, autres sous-réseaux, VPN, etc.) via des routes définissant le chemin du trafic.
+
 ![image](https://github.com/user-attachments/assets/72edd5d7-f748-4558-b965-fa61f0009e37)
 
 ### Table de routage private 1 :
