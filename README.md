@@ -1,4 +1,4 @@
-# Rapport : Projet Final AWS de FIGAROLI Romain
+# Rapport : Projet Final AWS de HOMBOURGER Tomy
 
 Date : 19/02/2025 
 
@@ -276,6 +276,8 @@ Un bucket S3 sur AWS est un conteneur de stockage utilisé pour stocker des obje
 ### Envoie du backup de l’application et de la base de données vers le bucket S3  
 ![image](https://github.com/user-attachments/assets/e4f2e64c-8aae-49d8-9e4e-79a2c9dbcff9)
 
+### Lien du bucket S3
+http://bucket-jo-ra-ro-to-so.s3-website-us-west-2.amazonaws.com
 
 # Partie 6 : Serveur de test
 
