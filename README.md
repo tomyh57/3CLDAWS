@@ -1,4 +1,4 @@
-# Rapport : Projet Final AWS de AHMADI Rateb
+# Rapport : Projet Final AWS de FIGAROLI Romain
 
 Date : 19/02/2025 
 
@@ -8,6 +8,8 @@ Créé par : KADI Soulaymane, HOMBOURGER Tomy, BERNARD Jonathan, AHMADI Rateb 
 # Partie 1 : Configuration sur AWS 
 
 ## Création du VPC : 
+# Qu'est ce qu'un VPC
+Un VPC (Virtual Private Cloud) sur AWS est un réseau virtuel dédié à ton compte AWS, dans lequel tu peux déployer tes ressources (serveurs EC2, bases de données RDS, etc.) de manière isolée et sécurisée. Il fonctionne comme un réseau privé dans le cloud, similaire à un réseau traditionnel dans un datacenter.
 ![image](https://github.com/user-attachments/assets/bb9d68e6-f875-49fe-99aa-d2fe516e7272)
 
 ## Sous-réseaux : 
