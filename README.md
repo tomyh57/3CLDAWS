@@ -50,34 +50,56 @@ Une passerelle Internet (Internet Gateway - IGW) sur AWS est un composant résea
 ### Qu'est ce qu'un groupe de sécurité privé
 Un groupe de sécurité (Security Group) sur AWS est un pare-feu virtuel qui contrôle le trafic entrant et sortant des ressources (comme les instances EC2). Il fonctionne avec des règles autorisant ou bloquant le trafic basé sur les ports, protocoles et adresses IP.
 
+Nous avons autorisé le port 22 afin de pouvoir se connecter en SSH à notre instance.
+
 ![image](https://github.com/user-attachments/assets/18cc92cc-b345-4331-b435-16677b12fc91)
 
-### Groupe de sécurité public : 
+## Groupe de sécurité public : 
+Nous avons autorisé le port 22 afin de pouvoir se connecter en SSH à notre instance. Ainsi que le port 3306 qui est le port pour MySQL, le port 5085 qui est le port de notre application flask python. Aussi les ports 80 et 443 pour la connexion en HTTP et HTTPS.
+
 ![image](https://github.com/user-attachments/assets/839d03ea-30f3-451f-8783-700e04ceb67f)
 
 ## Création de la base de données : 
+### Qu'est ce qu'une base de données
+Une base de données est un système organisé permettant de stocker, gérer et récupérer des données de manière structurée. Elle peut être relationnelle (SQL, avec des tables) ou non relationnelle (NoSQL, avec des documents, graphes, etc.).
+
+Dans notre cas, c'est une base de donnée relationnelle avec MySQL
+
 ![image](https://github.com/user-attachments/assets/6edb3f81-689c-43ac-94d6-d291828c1d6e)
 
-### Groupe de sous-réseaux DB : 
+## Groupe de sous-réseaux DB :
+### Qu'est ce qu'un groupe de sous-réseaux
+Un groupe de sous-réseaux (Subnet Group) sur AWS est un ensemble de sous-réseaux situés dans différentes zones de disponibilité (AZ). Il est utilisé principalement par des services comme Amazon RDS ou ElastiCache pour assurer la haute disponibilité et la répartition des ressources dans un VPC.
+
 ![image](https://github.com/user-attachments/assets/a52ed422-1cf0-4a26-b223-6207738acf8e)
 
-### Règles des groupes de sécurité :
+## Règles des groupes de sécurité :
+### Qu'est ce qu'une règle de groupe de sécurité
+Une règle de groupe de sécurité sur AWS définit les autorisations de trafic entrant et sortant d’un groupe de sécurité. Chaque règle spécifie un protocole (TCP, UDP, etc.), un port, et une plage d’IP autorisée, permettant de contrôler l’accès aux ressources comme les instances EC2.
+
 ![image](https://github.com/user-attachments/assets/4ecf50b7-8070-4687-9c09-efb722acf9c3)
 
-
-
 ## Création de l'instance EC2 publique et privée
+### Qu'est ce qu'une instance EC2
+Une instance EC2 (Elastic Compute Cloud) sur AWS est un serveur virtuel dans le cloud qui permet d'exécuter des applications. Elle offre une capacité de calcul évolutive, avec un choix de types d’instances adaptés aux besoins en CPU, RAM et stockage.
 
 ### Publique :
-![image](https://github.com/user-attachments/assets/1575cd57-e7c2-44bc-8091-3cf3b9ff71f3)
 ![image](https://github.com/user-attachments/assets/0db8aea7-2b88-4124-957d-2d2b105d7dbf)
+![image](https://github.com/user-attachments/assets/1575cd57-e7c2-44bc-8091-3cf3b9ff71f3)
+
+### Cré&ation de la paire de clés
+Une paire de clés pour une instance EC2 sur AWS est composée de deux éléments : une clé publique (stockée sur AWS) et une clé privée (que tu gardes). Elle sert à sécuriser l’accès à l’instance EC2 via SSH (Linux) ou RDP (Windows) sans avoir besoin de mots de passe.
+
 ![image](https://github.com/user-attachments/assets/0d024bc8-1a18-49bc-95aa-f5f04ed6b9bd)
 
 ### Privée :
 ![image](https://github.com/user-attachments/assets/fbea78f2-e709-474e-babf-1db41d4c65fe)
 
+## Qu'est ce qu'un cloudinit pour les instance EC2
+Cloud-init est un outil utilisé sur AWS (et d'autres plateformes cloud) pour automatiser la configuration initiale d'une instance EC2 lors de son démarrage. Il permet de déployer des scripts, installer des logiciels, configurer des paramètres réseau, créer des utilisateurs, etc., sans intervention manuelle, directement à partir des métadonnées de l'instance.
 
 ### Cloudinit à mettre dans la création de l'instance EC2
+
 ```
 #!/bin/bash  
 sudo apt update -y && sudo apt upgrade -y  
@@ -97,43 +119,53 @@ docker run -d -p 5085:5085 --name flask-app flask-datta-able
 ```
 ![image](https://github.com/user-attachments/assets/2b41ff51-3f0e-4b95-a8c7-bf4d5ac93e13)
 
-
-
 # Partie 2 : Configuration sur la VM 
 
 ### Connexion en SSH sur le VM grâce à la clé générée 
+Une connexion SSH (Secure Shell) est un protocole réseau sécurisé qui permet de se connecter à un serveur distant (comme une instance EC2) pour l’administrer à distance. Elle utilise une clé privée et un port spécifique pour assurer la confidentialité et la sécurité des échanges.
 
 ![image](https://github.com/user-attachments/assets/b699835e-d7e0-495b-b906-1919c41530d9)
+
+Preuve de la connexion à l'instance en SSH :
+
 ![image](https://github.com/user-attachments/assets/c77094ca-8d38-47d6-bba2-5c63c8263507)
 
-
 ### Modification du fichier .env pour établir la connexion avec la base de données
+Les informations DB_NAME, DB_USERNAME, DB_PASS, DB_PORT et DB_HOST ont été renseignées en fonction de notre base de données créée plus tôt.
 
 ![image](https://github.com/user-attachments/assets/6e3c4b2b-378d-4651-80ef-6f9e8e325050)
 
+### Création de l'image : 
+Nous avons créé l'image à l'aide de la commande : ```docker-compose up -d```
 
-### Pull de l'image grâce à la commande : 
-```docker-compose up -d```
 ![image](https://github.com/user-attachments/assets/b81c0db5-29b9-4e83-8417-123cbc8133c9)
 
-
-### Vérification de l'image grâce à la commande : 
-```docker ps```
+### Vérification de l'image : 
+Nous avons vérifié l'image à l'aide de la commande : ```docker ps```
 
 ![image](https://github.com/user-attachments/assets/86041d11-767d-4f91-9d17-7a78d96cf3ac)
 
 ### Vérification de l'accès à l'application grâce à la commande curl et avec l'interface web
+On peut constater que en faisant la commande ```curl http://54.202.208.199:5085```, notre application est accessible.
 
 ![commane curl](https://github.com/user-attachments/assets/79170b9d-bafa-4c87-8692-f758134c8b7c)
+
+On accède également à notre application depuis l'URL : ```http://54.202.208.199:5085```.
+
 ![interface web](https://github.com/user-attachments/assets/9e2fd872-b2c8-4248-a1f6-b8b648bc3063)
 
 # Partie 3 : Modification du virtual env pour connecter la DB et l'application
 
-### Mettre à jour le config.py ;:
+### Mettre à jour le config.py :
+Dans le fichier config.py, il faut mettre les bonnes informations de notre base de donnés : DB_NAME, DB_USERNAME, DB_PASS, DB_PORT et DB_HOST
 
 ![image](https://github.com/user-attachments/assets/c6b27351-513f-489f-9d3e-7299c8649111)
 
 ### Création et activation d'un environnement virtuel Python : 
+#### Pourquoi créer un environnement virtuel
+La création et l’activation d’un environnement virtuel Python permettent d’isoler les dépendances d’un projet pour éviter les conflits avec d’autres projets ou avec les paquets installés globalement sur la machine.
+
+Nous avons créé l'environnement virtuel python avec ces commande : 
 
 ```
 bash 
