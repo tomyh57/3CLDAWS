@@ -9,6 +9,7 @@ class Config(object):
 
     basedir = os.path.abspath(os.path.dirname(__file__))
 
+
     # for Product model
     CURRENCY     = { 'usd' : 'usd' , 'eur' : 'eur' }
     STATE        = { 'completed' : 1 , 'pending' : 2, 'refunded' : 3 }
@@ -40,47 +41,29 @@ class Config(object):
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    DB_ENGINE   = os.getenv('DB_ENGINE'   , None)
-    DB_USERNAME = os.getenv('DB_USERNAME' , None)
-    DB_PASS     = os.getenv('DB_PASS'     , None)
-    DB_HOST     = os.getenv('DB_HOST'     , None)
-    DB_PORT     = os.getenv('DB_PORT'     , None)
-    DB_NAME     = os.getenv('DB_NAME'     , None)
+    DB_ENGINE   = os.getenv('DB_ENGINE'   , 'mysql')
+    DB_USERNAME = os.getenv('DB_USERNAME' , 'admin')
+    DB_PASS     = os.getenv('DB_PASS'     , 'RoSoToRaJo12345!')
+    DB_HOST     = os.getenv('DB_HOST'     , 'db-jo-ro-ra-to-so.cxuuycc20a22.us-west-2.rds.amazonaws.com')
+    DB_PORT     = os.getenv('DB_PORT'     , '3306')
+    DB_NAME     = os.getenv('DB_NAME'     , 'DBjororatoso')
 
-    USE_SQLITE  = True 
+    USE_SQLITE  = False 
 
-    # try to set up a Relational DBMS
-    if DB_ENGINE and DB_NAME and DB_USERNAME:
-
-        try:
-            
-            # Relational DBMS: PSQL, MySql
-            SQLALCHEMY_DATABASE_URI = '{}://{}:{}@{}:{}/{}'.format(
-                DB_ENGINE,
-                DB_USERNAME,
-                DB_PASS,
-                DB_HOST,
-                DB_PORT,
-                DB_NAME
-            ) 
-
-            USE_SQLITE  = False
-
-        except Exception as e:
-
-            print('> Error: DBMS Exception: ' + str(e) )
-            print('> Fallback to SQLite ')    
-
-    if USE_SQLITE:
-
-        # This will create a file in <app> FOLDER
+    # Configuration de la base de données MySQL
+    try:
+        SQLALCHEMY_DATABASE_URI = '{}+pymysql://{}:{}@{}:{}/{}'.format(
+            DB_ENGINE,
+            DB_USERNAME,
+            DB_PASS,
+            DB_HOST,
+            DB_PORT,
+            DB_NAME
+        )
+    except Exception as e:
+        print('> Error: DBMS Exception: ' + str(e))
         SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'db.sqlite3')
-    
-
-    DYNAMIC_DATATB = {
-        "products": "apps.models.Product",
-        "sales": "apps.models.Sale"
-    }
+        USE_SQLITE = True
     
 class ProductionConfig(Config):
     DEBUG = False
@@ -98,3 +81,4 @@ config_dict = {
     'Production': ProductionConfig,
     'Debug'     : DebugConfig
 }
+

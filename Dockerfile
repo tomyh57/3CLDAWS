@@ -17,7 +17,7 @@ COPY env.sample .env
 COPY . .
 
 # Init migration folder
-# RUN flask db init # to be executed only once
+RUN flask db init
 RUN flask db migrate
 RUN flask db upgrade
 
