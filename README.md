@@ -203,7 +203,8 @@ nous  avons eu des erreurs car la python3-distutils n’était pas reconnu
 ![image](https://github.com/user-attachments/assets/1d31abd6-1349-4b59-92a5-24162bd2f23c)
 ![image](https://github.com/user-attachments/assets/2d782320-5e33-4683-a40e-f7b2fdc9e683)
 
-### Connexion à la DB et vérification des tables
+### Connexion à la DB et vérification de la base de donnés
+Nous avons vérifié que noter base de donnés était présente avec la commande ```SHOW DATABASES```
 
 ![image](https://github.com/user-attachments/assets/db936769-8bb1-4b00-8080-5b6f8f833f5b)
 ![image](https://github.com/user-attachments/assets/8b1713ce-a8a5-4602-ac0b-dfae13062031)
@@ -215,11 +216,14 @@ nous  avons eu des erreurs car la python3-distutils n’était pas reconnu
 ![image](https://github.com/user-attachments/assets/e37c8da1-7b04-4a70-9b20-cf51687dc182)
 
 ### Vérification de l'utilisateur créé en amont sur l'interface web
+Nous avons vérifié que l'utilisateur créé sur l'interface web était présent dans la base de donnés avec la commande ```Select * FROM users;```
 
 ![image](https://github.com/user-attachments/assets/836dfe09-d5d8-42f3-994b-e5125f593b47)
 
 
 # Partie 5 : Création du bucket S3
+### Qu'est ce qu'un Bucket S3
+Un bucket S3 sur AWS est un conteneur de stockage utilisé pour stocker des objets (fichiers, images, vidéos, backups, etc.) dans le service Amazon S3 (Simple Storage Service). Chaque bucket a un nom unique globalement, et tu peux gérer les autorisations, la version des fichiers et les règles de cycle de vie pour optimiser le stockage et la sécurité.
 
 ### Création du bucket S3
 ![image](https://github.com/user-attachments/assets/7ca8a8dd-77e8-4c5c-92bb-464d8bcb1ab3)
@@ -277,8 +281,13 @@ nous  avons eu des erreurs car la python3-distutils n’était pas reconnu
 
 ### Création du serveur de test
 
-#### Le fichier .pem a été crée grâce à nano 
+#### Le fichier .pem a été crée grâce à la commande : nano projet-final-roro-ect.pem.
+Nous avons collé le contenu de la paire de clés sur l'instance public afin de se connecter sur l'instance de test depuis l'instance public.
+
 ![image](https://github.com/user-attachments/assets/cbf6036a-5e0a-4f55-a005-5878425087f4)
+
+Nous arrivons à ping l'adresse de google depuis l'instance de test grâce à la NAT Gateway;
+
 ![image](https://github.com/user-attachments/assets/999f539f-8630-448e-8b26-7f7b384f7114)
 
 
